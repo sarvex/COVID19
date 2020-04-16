@@ -84,7 +84,7 @@ function Home(props) {
   const {navigation} = props;
 
   useEffect(() => {
-    Geolocation.getCurrentPosition((info) => setLocation(info));
+    // Geolocation.getCurrentPosition((info) => setLocation(info));
   }, [props]);
 
   // Reset form function
@@ -95,24 +95,6 @@ function Home(props) {
     setEmailId('');
   };
 
-  const validateMobileNumber = () => {
-    if (
-      (contactNumber.length == 10 && contactNumber.charAt(0) != '0') ||
-      contactNumber.length < 9
-    ) {
-      return false;
-    } else if (contactNumber.length == 9 && contactNumber.charAt(0) == '0') {
-      return false;
-    } else if (
-      contactNumber.length == 9 &&
-      contactNumber.charAt(0) != '2' &&
-      contactNumber.charAt(0) != '5'
-    ) {
-      return false;
-    }
-    return true;
-  };
-
   // Checking the validity of form and returning object containing the validity status and errormessage if any
   const validateForm = () => {
     const formValidy = {
@@ -121,9 +103,9 @@ function Home(props) {
     };
 
     const regexEmail = new RegExp(
-      /^([A-Za-z0-9\-\/\:\;\(\)\$\&\"\=\,\?\*\#\%\^\+\_\.\|\[\]\{\}\<\>\\\')+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,16})$/,
+      /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/,
     );
-    const regexNumber = new RegExp(/^[0][1-9]\d{9}$|^[1-9]\d{9}$|^\d{9,15}$/);
+    const regexNumber = new RegExp(/^(0)[2,5][0,3-9]([0-9]{7})$/);
 
     if (emailId != '' && !regexEmail.test(String(emailId).toLowerCase())) {
       formValidy.isValid = false;
@@ -132,11 +114,16 @@ function Home(props) {
       formValidy.isValid = false;
       formValidy.errorMessage = 'Please enter your mobile number';
       // } else if (!validateMobileNumber()) {
+    } else if (
+      !regexNumber.test(
+        String(
+          contactNumber.length == 9 ? '0' + contactNumber : contactNumber,
+        ).toLowerCase(),
+      )
+    ) {
+      formValidy.isValid = false;
+      formValidy.errorMessage = 'Please enter a valid mobile number';
     }
-    // else if (!regexNumber.test(String(contactNumber).toLowerCase())) {
-    //   formValidy.isValid = false;
-    //   formValidy.errorMessage = "Please enter a valid mobile number";
-    // }
     return formValidy;
   };
 
