@@ -84,7 +84,7 @@ function Home(props) {
   const {navigation} = props;
 
   useEffect(() => {
-    // Geolocation.getCurrentPosition((info) => setLocation(info));
+    Geolocation.getCurrentPosition((info) => setLocation(info));
   }, [props]);
 
   // Reset form function
