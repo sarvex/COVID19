@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import Questions from '../common/Questions';
 import ThankYou from './ThankYou';
 
@@ -43,8 +43,8 @@ export class Forms extends Component {
     let set = [];
     const url =
       'https://95vhy0wg9d.execute-api.eu-west-2.amazonaws.com/ghcovid19testtracker';
-    const urlProd =
-      'https://lu8tf795jk.execute-api.eu-west-2.amazonaws.com/prod';
+    const encoded = encodeURI(url);
+
     if (count < screenProps.sections.length) {
       return (
         <Questions
@@ -63,7 +63,7 @@ export class Forms extends Component {
         detail: state.params,
         question: set,
       };
-      push('ThankYouScreen', {url: url, data});
+      push('ThankYouScreen', {url: encoded, data});
     }
   };
 

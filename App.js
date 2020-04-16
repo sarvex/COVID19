@@ -9,8 +9,8 @@ export default class App extends Component {
   };
   componentDidMount() {
     let url = `https://95vhy0wg9d.execute-api.eu-west-2.amazonaws.com/ghcovid19testtracker?locale=ENG`;
-    let urlProd = `https://lu8tf795jk.execute-api.eu-west-2.amazonaws.com/prod?locale=ENG`;
-    ApiHelperGET(url, {}).then((response) => {
+    const encoded = encodeURI(url);
+    ApiHelperGET(encoded, {}).then((response) => {
       if (response.statusCode == 403) {
         this.setState({dataSet: {errorMessage: response.body.errorMessage}});
       } else {
