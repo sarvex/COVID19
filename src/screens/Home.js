@@ -114,16 +114,17 @@ function Home(props) {
       formValidy.isValid = false;
       formValidy.errorMessage = 'Please enter your mobile number';
       // } else if (!validateMobileNumber()) {
-    } else if (
-      !regexNumber.test(
-        String(
-          contactNumber.length == 9 ? '0' + contactNumber : contactNumber,
-        ).toLowerCase(),
-      )
-    ) {
-      formValidy.isValid = false;
-      formValidy.errorMessage = 'Please enter a valid mobile number';
     }
+    // else if (
+    //   !regexNumber.test(
+    //     String(
+    //       contactNumber.length == 9 ? '0' + contactNumber : contactNumber,
+    //     ).toLowerCase(),
+    //   )
+    // ) {
+    //   formValidy.isValid = false;
+    //   formValidy.errorMessage = 'Please enter a valid mobile number';
+    // }
     return formValidy;
   };
 
