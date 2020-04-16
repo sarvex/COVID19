@@ -1,0 +1,13 @@
+{
+  "home": {
+    "Intro": "Bienvenue sur l'application GHS COVID-19 Symptoms Tracker. Veuillez entrer les détails ci-dessous pour commencer.",
+    "FullName": "Nom complet",
+    "FullNamePlaceholder": "Entrez le nom complet",
+    "Email": "Email",
+    "EmailPlaceholder": "Entrez votre e-mail",
+    "ContactNumber": "Numéro de contact",
+    "ContactNumberPlcaeholder": "Entrer un nombre",
+    "ProceedButton": "Procéder",
+    "TnC": "Cliquez ici pour voir et accepter les TnC"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "home": {
+    "Intro": "Govt. of Ghana COVID-19 Tracker",
+    "Intro1": "This app does not give health advice but it allows you to assess your symptoms and help control the spread of COVID-19.",
+    "FullName": "Full Name",
+    "FullNamePlaceholder": "Enter Full Name",
+    "Email": "Email",
+    "EmailPlaceholder": "Enter Email",
+    "ContactNumber": "Contact Number",
+    "ContactNumberPlcaeholder": "Enter Mobile Number",
+    "ProceedButton": "Proceed",
+    "TnC": "Click here to view and agree the T&C's and Privacy Policy"
+  },
+  "pInfo": {
+    "ContinueButton": "Next >",
+    "QuitButton": "Quit"
+  },
+  "thankYou": {
+    "message": "Don't forget to share this app",
+    "share": "The more people check and report their symptoms, the more we can help Government provide care to those who need it most.",
+    "shareButton": "Share app"
+  }
+}

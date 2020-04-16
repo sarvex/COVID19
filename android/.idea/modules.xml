@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/COVID19.iml" filepath="$PROJECT_DIR$/COVID19.iml" group="COVID19" />
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/@react-native-community/geolocation/android/android-react-native-community_geolocation.iml" filepath="$PROJECT_DIR$/../node_modules/@react-native-community/geolocation/android/android-react-native-community_geolocation.iml" group="COVID19/react-native-community_geolocation" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/@react-native-community/masked-view/android/android-react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/../node_modules/@react-native-community/masked-view/android/android-react-native-community_masked-view.iml" group="COVID19/react-native-community_masked-view" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/android-react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/android-react-native-gesture-handler.iml" group="COVID19/react-native-gesture-handler" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-i18n/android/android-react-native-i18n.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-i18n/android/android-react-native-i18n.iml" group="COVID19/react-native-i18n" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-imei/android/android-react-native-imei.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-imei/android/android-react-native-imei.iml" group="COVID19/react-native-imei" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-localize/android/android-react-native-localize.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-localize/android/android-react-native-localize.iml" group="COVID19/react-native-localize" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-reanimated/android/android-react-native-reanimated.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-reanimated/android/android-react-native-reanimated.iml" group="COVID19/react-native-reanimated" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-safe-area-context/android/android-react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-safe-area-context/android/android-react-native-safe-area-context.iml" group="COVID19/react-native-safe-area-context" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-screens/android/android-react-native-screens.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-screens/android/android-react-native-screens.iml" group="COVID19/react-native-screens" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/android-react-native-vector-icons.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/android-react-native-vector-icons.iml" group="COVID19/react-native-vector-icons" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="COVID19/app" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/@react-native-community/geolocation/android/react-native-community_geolocation.iml" filepath="$PROJECT_DIR$/../node_modules/@react-native-community/geolocation/android/react-native-community_geolocation.iml" group="COVID19/react-native-community_geolocation" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/@react-native-community/masked-view/android/react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/../node_modules/@react-native-community/masked-view/android/react-native-community_masked-view.iml" group="COVID19/react-native-community_masked-view" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" group="COVID19/react-native-gesture-handler" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-i18n/android/react-native-i18n.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-i18n/android/react-native-i18n.iml" group="COVID19/react-native-i18n" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-imei/android/react-native-imei.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-imei/android/react-native-imei.iml" group="COVID19/react-native-imei" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-localize/android/react-native-localize.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-localize/android/react-native-localize.iml" group="COVID19/react-native-localize" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-reanimated/android/react-native-reanimated.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-reanimated/android/react-native-reanimated.iml" group="COVID19/react-native-reanimated" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-safe-area-context/android/react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-safe-area-context/android/react-native-safe-area-context.iml" group="COVID19/react-native-safe-area-context" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-screens/android/react-native-screens.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-screens/android/react-native-screens.iml" group="COVID19/react-native-screens" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" group="COVID19/react-native-vector-icons" />
+    </modules>
+  </component>
+</project>
