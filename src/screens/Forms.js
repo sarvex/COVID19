@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
-import Questions from "../common/Questions";
-import ThankYou from "./ThankYou";
+import React, {Component} from 'react';
+import {View, StyleSheet} from 'react-native';
+import Questions from '../common/Questions';
+import ThankYou from './ThankYou';
 
 export class Forms extends Component {
   state = {
@@ -12,14 +12,14 @@ export class Forms extends Component {
 
   componentDidMount() {
     const {
-      screenProps: { sections },
+      screenProps: {sections},
     } = this.props;
-    this.setState({ tempData: sections[0] });
+    this.setState({tempData: sections[0]});
   }
 
   handleFormChange = (dataSet) => {
-    const { counter, finalSet } = this.state;
-    const { screenProps } = this.props;
+    const {counter, finalSet} = this.state;
+    const {screenProps} = this.props;
 
     if (counter <= screenProps.sections.length - 1) {
       this.setState({
@@ -28,23 +28,23 @@ export class Forms extends Component {
         tempData: screenProps.sections[counter + 1],
       });
     } else {
-      console.log("No Next Page");
+      console.log('No Next Page');
     }
   };
 
   callingQuestions = (count) => {
-    const { tempData, finalSet } = this.state;
+    const {tempData, finalSet} = this.state;
     const {
       screenProps,
-      navigation: { state, push },
+      navigation: {state, push},
     } = this.props;
 
     let data;
     let set = [];
     const url =
-      "https://95vhy0wg9d.execute-api.eu-west-2.amazonaws.com/ghcovid19testtracker";
+      'https://95vhy0wg9d.execute-api.eu-west-2.amazonaws.com/ghcovid19testtracker';
     const urlProd =
-      "https://lu8tf795jk.execute-api.eu-west-2.amazonaws.com/prod";
+      'https://lu8tf795jk.execute-api.eu-west-2.amazonaws.com/prod';
     if (count < screenProps.sections.length) {
       return (
         <Questions
@@ -56,20 +56,20 @@ export class Forms extends Component {
     } else {
       finalSet.map((sections) => {
         sections.questions.map((item) => {
-          set.push({ id: item.id, answer: item.answer });
+          set.push({id: item.id, answer: item.answer});
         });
       });
       data = {
         detail: state.params,
         question: set,
       };
-      push("ThankYouScreen", { url: url, data });
+      push('ThankYouScreen', {url: url, data});
     }
   };
 
   render() {
-    const { counter } = this.state;
-    const { screenProps } = this.props;
+    const {counter} = this.state;
+    const {screenProps} = this.props;
     return (
       <View style={styles.container}>
         {screenProps && this.callingQuestions(counter)}
@@ -83,9 +83,9 @@ export default Forms;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     margin: 15,
-    backgroundColor: "#f2f2f7",
+    backgroundColor: '#f2f2f7',
   },
 });
