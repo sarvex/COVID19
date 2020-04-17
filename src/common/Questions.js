@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Platform,
   StyleSheet,
@@ -11,14 +11,13 @@ import {
   Keyboard,
   ScrollView,
   Alert,
-} from 'react-native';
-import InputQuestion from './InputQuestion';
-import DropdownQuestion from './DropdownQuestion';
-import {strings} from '../translations/index';
-import YesNoQuestion from './YesNoQuestion';
+} from "react-native";
+import InputQuestion from "./InputQuestion";
+import DropdownQuestion from "./DropdownQuestion";
+import YesNoQuestion from "./YesNoQuestion";
 
 const button = {
-  backgroundColor: '#fc9f00',
+  backgroundColor: "#fc9f00",
   fontSize: 17,
   flex: 1,
   height: 20,
@@ -47,7 +46,7 @@ export default function Questions(props) {
       tempAnswers.push(answer);
       return tempAnswers;
     };
-    setAnsweredData({...answeredQuestions, questions: changeAnswer(value)});
+    setAnsweredData({ ...answeredQuestions, questions: changeAnswer(value) });
   };
 
   const handleDropdownChange = (value) => {
@@ -58,7 +57,7 @@ export default function Questions(props) {
       tempAnswers.push(answer);
       return tempAnswers;
     };
-    setAnsweredData({...answeredQuestions, questions: changeAnswer(value)});
+    setAnsweredData({ ...answeredQuestions, questions: changeAnswer(value) });
   };
 
   const handleChangeAnswer = (value) => {
@@ -69,25 +68,25 @@ export default function Questions(props) {
       tempAnswers.push(answer);
       return tempAnswers;
     };
-    setAnsweredData({...answeredQuestions, questions: changeAnswer(value)});
+    setAnsweredData({ ...answeredQuestions, questions: changeAnswer(value) });
   };
 
   const displayQuestion = () => {
-    const alternatingColor = ['#D3D3D3', '#ffffff'];
+    const alternatingColor = ["#D3D3D3", "#ffffff"];
     if (answeredQuestions.questions) {
       return answeredQuestions.questions
         .sort((a, b) => a.id - b.id)
         .map((item, index) => {
           // Handling if question is dependent on any other question and that question have expected value start
-          if (item.dependentQuestion != '' && item.dependentQuestion != null) {
+          if (item.dependentQuestion != "" && item.dependentQuestion != null) {
             const dependentQuestions = item.dependentQuestion
               .toString()
-              .split('#');
+              .split("#");
             if (dependentQuestions.length === 1) {
-              const qusId = dependentQuestions[0].split('/')[0];
-              const expectedValue = dependentQuestions[0].split('/')[1];
+              const qusId = dependentQuestions[0].split("/")[0];
+              const expectedValue = dependentQuestions[0].split("/")[1];
               const answer = answeredQuestions.questions.filter(
-                (ques) => ques.id == qusId,
+                (ques) => ques.id == qusId
               )[0].answer;
               if (
                 answer.toString().trim().toLowerCase() !=
@@ -99,10 +98,10 @@ export default function Questions(props) {
             } else {
               let isValid = false;
               dependentQuestions.map((item) => {
-                const qusId = item.split('/')[0];
-                const expectedValue = item.split('/')[1];
+                const qusId = item.split("/")[0];
+                const expectedValue = item.split("/")[1];
                 const answer = answeredQuestions.questions.filter(
-                  (ques) => ques.id == qusId,
+                  (ques) => ques.id == qusId
                 )[0].answer;
                 if (
                   answer.toString().trim().toLowerCase() ==
@@ -119,16 +118,17 @@ export default function Questions(props) {
           }
           // Handling if question is dependent on any other question and that question have expected value end
           if (item.options.length == 2) {
-            item.optionType = 'boolean';
+            item.optionType = "boolean";
           }
-          if (item.optionType === 'opentext') {
+          if (item.optionType === "opentext") {
             return (
               <View
                 style={{
                   backgroundColor:
                     alternatingColor[index % alternatingColor.length],
                   padding: 5,
-                }}>
+                }}
+              >
                 <InputQuestion
                   item={item}
                   label={item.questionName}
@@ -138,17 +138,18 @@ export default function Questions(props) {
                 />
               </View>
             );
-          } else if (item.optionType === 'dropdown') {
+          } else if (item.optionType === "dropdown") {
             return (
               <View
                 style={{
-                  backgroundColor: '#ffffff',
+                  backgroundColor: "#ffffff",
                   borderRadius: 10,
                   margin: 10,
                   marginLeft: 0,
                   marginRight: 0,
                   elevation: 1,
-                }}>
+                }}
+              >
                 <DropdownQuestion
                   item={item}
                   label={item.questionName}
@@ -159,21 +160,22 @@ export default function Questions(props) {
                 />
               </View>
             );
-          } else if (item.optionType === 'boolean') {
+          } else if (item.optionType === "boolean") {
             return (
               <View
                 style={{
-                  backgroundColor: '#ffffff',
+                  backgroundColor: "#ffffff",
                   borderRadius: 10,
                   margin: 10,
                   marginLeft: 0,
                   marginRight: 0,
                   elevation: 1,
-                }}>
+                }}
+              >
                 <YesNoQuestion
                   item={item}
                   label={item.questionName}
-                  description={''}
+                  description={""}
                   handleChangeAnswer={handleChangeAnswer}
                   answer={item.answer}
                   answer={item.answer}
@@ -187,12 +189,12 @@ export default function Questions(props) {
 
   const validateData = () => {
     let formNotCompelete = false;
-    let label = '';
+    let label = "";
 
     for (var i = 0; i <= answeredQuestions.questions.length; i++) {
       if (
         answeredQuestions.questions[i] &&
-        (answeredQuestions.questions[i].answer === '' ||
+        (answeredQuestions.questions[i].answer === "" ||
           answeredQuestions.questions[i].answer === undefined) &&
         answeredQuestions.questions[i].answerRequired
       ) {
@@ -210,8 +212,9 @@ export default function Questions(props) {
   };
   return (
     <KeyboardAvoidingView
-      style={{flex: 1, width: '100%'}}
-      behavior={Platform.Os == 'ios' ? 'padding' : 'height'}>
+      style={{ flex: 1, width: "100%" }}
+      behavior={Platform.Os == "ios" ? "padding" : "height"}
+    >
       <SafeAreaView style={styles.container}>
         <Text style={styles.pInfo}>{answeredQuestions.sectionTitle}</Text>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -226,14 +229,15 @@ export default function Questions(props) {
             <TouchableOpacity
               accessible
               onPress={() => validateData()}
-              style={styles.button}>
+              style={styles.button}
+            >
               <Text style={styles.buttonText}>
-                {props.showSubmit === 1 ? 'Submit' : 'Next'}
+                {props.showSubmit === 1 ? "Submit" : "Next"}
               </Text>
             </TouchableOpacity>
           </View>
         )}
-        <View style={{flex: 1}} />
+        <View style={{ flex: 1 }} />
       </SafeAreaView>
     </KeyboardAvoidingView>
   );
@@ -242,50 +246,50 @@ export default function Questions(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   scrollView: {
     marginHorizontal: 20,
-    width: '100%',
-    height: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    height: "100%",
+    alignSelf: "center",
   },
   pInfo: {
-    width: '100%',
+    width: "100%",
     fontSize: 25,
-    textAlign: 'center',
-    color: '#20477D',
+    textAlign: "center",
+    color: "#20477D",
     margin: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   formContainer: {
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
   },
   inputWrapper: {
-    width: '100%',
-    borderColor: 'silver',
+    width: "100%",
+    borderColor: "silver",
     borderBottomWidth: 1,
   },
   itemLabel: {
-    color: 'grey',
-    textAlign: 'left',
+    color: "grey",
+    textAlign: "left",
     fontSize: 20,
     marginTop: 13,
     marginBottom: 10,
   },
   button: {
     ...button,
-    backgroundColor: '#fc9f00',
-    width: '100%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    backgroundColor: "#fc9f00",
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
     height: 46,
     lineHeight: 46,
     fontSize: 20,
@@ -294,17 +298,17 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     height: 50,
     margin: 20,
-    width: '60%',
+    width: "60%",
   },
   quitButtonWrapper: {
     height: 25,
-    width: '25%',
+    width: "25%",
     margin: 5,
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
   },
   quitButtonText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
     height: 26,
     lineHeight: 26,
     fontSize: 15,

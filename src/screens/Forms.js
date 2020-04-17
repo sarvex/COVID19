@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Questions from '../common/Questions';
-import ThankYou from './ThankYou';
+import { SUBMIT_QUESTION_API_URL } from '../util/constants';
 
 export class Forms extends Component {
   state = {
@@ -41,10 +41,6 @@ export class Forms extends Component {
 
     let data;
     let set = [];
-    const url =
-      'https://95vhy0wg9d.execute-api.eu-west-2.amazonaws.com/ghcovid19testtracker';
-    const encoded = encodeURI(url);
-
     if (count < screenProps.sections.length) {
       return (
         <Questions
@@ -63,7 +59,7 @@ export class Forms extends Component {
         detail: state.params,
         question: set,
       };
-      push('ThankYouScreen', {url: encoded, data});
+      push('ThankYouScreen', {url: SUBMIT_QUESTION_API_URL, data});
     }
   };
 
