@@ -36,11 +36,11 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
+ios
+android
 
 # Dependency directories
 node_modules/
-ios/
-android/
 jspm_packages/
 
 # TypeScript v1 declaration files

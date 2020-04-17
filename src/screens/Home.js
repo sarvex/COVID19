@@ -22,7 +22,7 @@ import {connect} from 'react-redux';
 import Logo from '../images/Logo.png';
 import TermsAndCondition from '../common/TermsAndConditions';
 import Geolocation from '@react-native-community/geolocation';
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {ApiHelperPUT} from '../util/APIhelper';
 import SpinnerModal from '../common/SpinnerModal';
 // import Spinner from "react-native-loading-spinner-overlay";
@@ -112,19 +112,18 @@ function Home(props) {
       formValidy.errorMessage = 'Please enter a valid email id';
     } else if (contactNumber === '') {
       formValidy.isValid = false;
-      formValidy.errorMessage = 'Please enter your mobile number';
+      formValidy.errorMessage = 'Please enter a valid Ghana mobile number';
       // } else if (!validateMobileNumber()) {
+    } else if (
+      !regexNumber.test(
+        String(
+          contactNumber.length == 9 ? '0' + contactNumber : contactNumber,
+        ).toLowerCase(),
+      )
+    ) {
+      formValidy.isValid = false;
+      formValidy.errorMessage = 'Please enter a valid Ghana mobile numbe';
     }
-    // else if (
-    //   !regexNumber.test(
-    //     String(
-    //       contactNumber.length == 9 ? '0' + contactNumber : contactNumber,
-    //     ).toLowerCase(),
-    //   )
-    // ) {
-    //   formValidy.isValid = false;
-    //   formValidy.errorMessage = 'Please enter a valid mobile number';
-    // }
     return formValidy;
   };
 
@@ -213,44 +212,45 @@ function Home(props) {
       setIsLoading(false);
     };
     if (validateForm().isValid) {
+      redirectUserToNextScrren();
       // Check if user is already verified and stored in local storage
-      const validatedUsers = await AsyncStorage.getItem('VALIDATED_USERS');
-      if (
-        validatedUsers != null &&
-        validatedUsers.split(',').includes(contactNumber)
-      ) {
-        // User available in local storage redirect to next screen
-        redirectUserToNextScrren();
-      } else {
-        // User is not verfied already so Generating OTP
-        try {
-          setIsLoading(true);
-          const generateOtpResponse = await generateOTP();
+      // const validatedUsers = await AsyncStorage.getItem("VALIDATED_USERS");
+      // if (
+      //   validatedUsers != null &&
+      //   validatedUsers.split(",").includes(contactNumber)
+      // ) {
+      //   // User available in local storage redirect to next screen
+      //   redirectUserToNextScrren();
+      // } else {
+      //   // User is not verfied already so Generating OTP
+      //   try {
+      //     setIsLoading(true);
+      //     const generateOtpResponse = await generateOTP();
 
-          // Handle generate otp response
-          if (
-            generateOtpResponse.statusCode == 0 &&
-            !generateOtpResponse.body.error
-          ) {
-            setIsOtpGenerated(true);
-            setIsLoading(false);
-          } else {
-            Alert.alert(generateOtpResponse.body.errorMessage, '', [
-              {
-                text: 'Ok',
-                onPress: removeLoader,
-              },
-            ]);
-          }
-        } catch (error) {
-          Alert.alert('Technical error, please try again later', '', [
-            {
-              text: 'Ok',
-              onPress: removeLoader,
-            },
-          ]);
-        }
-      }
+      //     // Handle generate otp response
+      //     if (
+      //       generateOtpResponse.statusCode == 0 &&
+      //       !generateOtpResponse.body.error
+      //     ) {
+      //       setIsOtpGenerated(true);
+      //       setIsLoading(false);
+      //     } else {
+      //       Alert.alert(generateOtpResponse.body.errorMessage, "", [
+      //         {
+      //           text: "Ok",
+      //           onPress: removeLoader,
+      //         },
+      //       ]);
+      //     }
+      //   } catch (error) {
+      //     Alert.alert("Technical error, please try again later", "", [
+      //       {
+      //         text: "Ok",
+      //         onPress: removeLoader,
+      //       },
+      //     ]);
+      //   }
+      // }
     } else {
       Alert.alert(validateForm().errorMessage, '', [
         {
@@ -265,12 +265,6 @@ function Home(props) {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.formContainer}>
-          {/* <Spinner
-              visible={isLoading}
-              textContent={"Please wait..."}
-              textStyle={{ color: "white", textAlign: "center", width: 300 }}
-              animation="fade"
-            /> */}
           <SpinnerModal visible={isLoading} />
 
           <View style={styles.inputWrapper}>
@@ -278,7 +272,8 @@ function Home(props) {
               onChangeText={(value) => setEmailId(value)}
               style={{...styles.input, marginBottom: 0}}
               keyboardType={'email-address'}
-              placeholder={'Enter Email ID'}
+              placeholder={'Enter Email ID (Optional)'}
+              maxLength={50}
               placeholderTextColor={'#ffffff'}
               value={emailId}
             />
@@ -296,7 +291,6 @@ function Home(props) {
             }}>
             <Text
               style={{
-                height: '100%',
                 fontSize: 20,
                 color: 'black',
                 paddingTop: 7,

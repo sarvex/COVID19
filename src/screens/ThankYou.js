@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,32 +8,31 @@ import {
   TouchableOpacity,
   Alert,
   Linking,
-} from "react-native";
-import { strings } from "../translations/index";
-import { ApiHelperPOST } from "../util/APIhelper";
-import SpinnerModal from "../common/SpinnerModal";
-import Logo from "../images/Logo.png";
-import GVG from "../images/GVGvector.png";
-import ASC from "../images/ASCvector.png";
-import IQ from "../images/IQvector.png";
-import { ScrollView } from "react-native-gesture-handler";
+} from 'react-native';
+import {ApiHelperPOST} from '../util/APIhelper';
+import SpinnerModal from '../common/SpinnerModal';
+import Logo from '../images/Logo.png';
+import GVG from '../images/GVGvector.png';
+import ASC from '../images/ASCvector.png';
+import IQ from '../images/IQvector.png';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const button = {
   fontSize: 17,
   flex: 1,
   lineHeight: 46,
   borderRadius: 20,
-  marginRight: "auto",
-  marginLeft: "auto",
+  marginRight: 'auto',
+  marginLeft: 'auto',
 };
 
 export default function ThankYou(props) {
   const [loader, showLoader] = useState(false);
-  const [finalMessage, setFinalMessage] = useState("");
-  const [finalMessageDescription, setFinalMessageDescription] = useState("");
-  const [warningMessage, setWarningMessage] = useState("");
+  const [finalMessage, setFinalMessage] = useState('');
+  const [finalMessageDescription, setFinalMessageDescription] = useState('');
+  const [warningMessage, setWarningMessage] = useState('');
   const [warningMessageDescription, setWarningMessageDescription] = useState(
-    ""
+    '',
   );
   const [warning, setWarningFlag] = useState(false);
 
@@ -41,12 +40,12 @@ export default function ThankYou(props) {
     const {
       navigation: {
         state: {
-          params: { url, data },
+          params: {url, data},
         },
       },
     } = props;
     showLoader(true);
-    ApiHelperPOST(url, data, "POST").then((response) => {
+    ApiHelperPOST(url, data, 'POST').then((response) => {
       const {
         statusCode,
         body: {
@@ -72,13 +71,13 @@ export default function ThankYou(props) {
         } else if (error) {
           setFinalMessage(
             errorMessage ||
-              "There seems to be some problem. Please try again after sometime"
+              'There seems to be some problem. Please try again after sometime',
           );
           showLoader(false);
         }
       } else {
         setFinalMessage(
-          "There seems to be some problem. Please try again after sometime"
+          'There seems to be some problem. Please try again after sometime',
         );
         showLoader(false);
       }
@@ -92,25 +91,24 @@ export default function ThankYou(props) {
       <ScrollView>
         {!loader && !warning && (
           <View style={styles.messageWrapper}>
-            <Image style={{ alignSelf: "center" }} source={Logo} />
+            <Image style={{alignSelf: 'center'}} source={Logo} />
             <Text style={styles.finalMessage}>{finalMessage}</Text>
             <Text style={styles.finalMessageDescription}>
               {finalMessageDescription}
             </Text>
             <Text
               style={{
-                color: "blue",
-                textAlign: "center",
+                color: 'blue',
+                textAlign: 'center',
                 fontSize: 17,
                 marginTop: 10,
               }}
-              onPress={() => Linking.openURL("https://ghanahealthservice.org")}
-            >
+              onPress={() => Linking.openURL('https://ghanahealthservice.org')}>
               GHS Website
             </Text>
           </View>
         )}
-        {!loader && !warning && (
+        {/* {!loader && !warning && (
           <View style={styles.shareContainer}>
             <View style={styles.buttonWrapperFinal}>
               <TouchableOpacity accessible style={styles.buttonFinal}>
@@ -118,28 +116,26 @@ export default function ThankYou(props) {
               </TouchableOpacity>
             </View>
           </View>
-        )}
+        )} */}
         {!loader && !warning && (
           <View style={styles.branding}>
             <Text
               style={{
-                textAlign: "center",
+                textAlign: 'center',
                 fontSize: 15,
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 marginBottom: 5,
-              }}
-            >
+              }}>
               Partners
             </Text>
             <View
               style={{
-                display: "flex",
-                flexDirection: "row",
-                alignSelf: "center",
-              }}
-            >
-              <Image style={{ marginRight: 5 }} source={IQ} />
-              <Image style={{ marginLeft: 5 }} source={ASC} />
+                display: 'flex',
+                flexDirection: 'row',
+                alignSelf: 'center',
+              }}>
+              <Image style={{marginRight: 5}} source={IQ} />
+              <Image style={{marginLeft: 5}} source={ASC} />
             </View>
           </View>
         )}
@@ -156,8 +152,7 @@ export default function ThankYou(props) {
             <TouchableOpacity
               accessible
               onPress={() => setWarningFlag(false)}
-              style={styles.button}
-            >
+              style={styles.button}>
               <Text style={styles.buttonText}>Next</Text>
             </TouchableOpacity>
           </View>
@@ -171,109 +166,109 @@ export default function ThankYou(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f2f2f7",
-    height: "auto",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f2f2f7',
+    height: 'auto',
     padding: 15,
   },
   pInfo: {
     fontSize: 25,
-    textAlign: "center",
-    color: "#20477D",
+    textAlign: 'center',
+    color: '#20477D',
     margin: 10,
-    width: "100%",
-    fontWeight: "bold",
+    width: '100%',
+    fontWeight: 'bold',
     marginTop: 20,
     marginBottom: 20,
   },
   branding: {
-    justifyContent: "center",
-    height: "20%",
-    width: "80%",
-    alignSelf: "center",
+    justifyContent: 'center',
+    height: '20%',
+    width: '80%',
+    alignSelf: 'center',
     marginBottom: 40,
   },
   shareContainer: {
-    alignSelf: "center",
-    height: "auto",
-    width: "80%",
+    alignSelf: 'center',
+    height: 'auto',
+    width: '80%',
     borderRadius: 10,
   },
   shareText: {
     fontSize: 20,
-    textAlign: "center",
-    color: "#20477D",
+    textAlign: 'center',
+    color: '#20477D',
     margin: 5,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   shareTextMessage: {
     fontSize: 17,
-    textAlign: "center",
-    color: "black",
+    textAlign: 'center',
+    color: 'black',
     margin: 5,
   },
   message: {
     fontSize: 15,
-    textAlign: "center",
-    justifyContent: "flex-end",
-    color: "black",
+    textAlign: 'center',
+    justifyContent: 'flex-end',
+    color: 'black',
     margin: 5,
   },
   finalMessage: {
     fontSize: 17,
-    textAlign: "center",
-    fontWeight: "bold",
+    textAlign: 'center',
+    fontWeight: 'bold',
     margin: 5,
   },
   finalMessageDescription: {
     fontSize: 15,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 5,
     marginTop: 10,
     marginBottom: 0,
   },
   warningMessage: {
     fontSize: 18,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   warningMessageDescription: {
     fontSize: 15,
-    textAlign: "left",
+    textAlign: 'left',
     margin: 10,
   },
   warningMessageWrapper: {
-    height: "auto",
-    width: "95%",
-    alignSelf: "center",
-    margin: "auto",
-    backgroundColor: "#ffffff",
+    height: 'auto',
+    width: '95%',
+    alignSelf: 'center',
+    margin: 'auto',
+    backgroundColor: '#ffffff',
     borderRadius: 20,
     padding: 10,
   },
   messageWrapper: {
-    alignSelf: "center",
-    height: "auto",
-    width: "95%",
-    minWidth: "95%",
-    margin: "auto",
-    backgroundColor: "#ffffff",
+    alignSelf: 'center',
+    height: 'auto',
+    width: '95%',
+    minWidth: '95%',
+    margin: 'auto',
+    backgroundColor: '#ffffff',
     borderRadius: 20,
     padding: 10,
   },
   buttonFinal: {
     ...button,
-    backgroundColor: "#fc9f00",
+    backgroundColor: '#fc9f00',
     height: 40,
-    width: "60%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    width: '60%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   buttonTextFinal: {
-    color: "white",
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center',
     lineHeight: 50,
     fontSize: 20,
   },
@@ -283,15 +278,15 @@ const styles = StyleSheet.create({
   },
   button: {
     ...button,
-    backgroundColor: "#fc9f00",
-    width: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    backgroundColor: '#fc9f00',
+    width: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 
   buttonText: {
-    color: "white",
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center',
     height: 46,
     lineHeight: 46,
     fontSize: 20,
@@ -302,8 +297,8 @@ const styles = StyleSheet.create({
     margin: 20,
     marginTop: 40,
     marginBottom: 40,
-    width: "60%",
-    height: "auto",
-    alignSelf: "center",
+    width: '60%',
+    height: 'auto',
+    alignSelf: 'center',
   },
 });
