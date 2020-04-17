@@ -43,12 +43,6 @@
 	<string>Allow GH COVID19 Tracker to use your location to evaluate the impact of COVID19 in your region</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow GH COVID19 Tracker to use your location to evaluate the impact of COVID19 in your region</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -66,6 +60,12 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

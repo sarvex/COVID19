@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Navigator from './src/routes/homeStack';
 import {ApiHelperGET} from './src/util/APIhelper';
 import SpinnerModal from './src/common/SpinnerModal';
+import {SECTION_API_URL} from './src/util/constants';
 
 export default class App extends Component {
   state = {
@@ -10,8 +11,7 @@ export default class App extends Component {
     showLoader: false,
   };
   componentDidMount() {
-    let url = `https://95vhy0wg9d.execute-api.eu-west-2.amazonaws.com/ghcovid19testtracker?locale=ENG`;
-    const encoded = encodeURI(url);
+    const encoded = encodeURI(SECTION_API_URL);
     this.setState({showLoader: true});
     ApiHelperGET(encoded, {}).then((response) => {
       if (response.statusCode == 403) {
