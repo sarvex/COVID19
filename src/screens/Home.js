@@ -113,7 +113,6 @@ function Home(props) {
     } else if (contactNumber === '') {
       formValidy.isValid = false;
       formValidy.errorMessage = 'Please enter a valid Ghana mobile number';
-      // } else if (!validateMobileNumber()) {
     } else if (
       !regexNumber.test(
         String(
@@ -122,7 +121,7 @@ function Home(props) {
       )
     ) {
       formValidy.isValid = false;
-      formValidy.errorMessage = 'Please enter a valid Ghana mobile numbe';
+      formValidy.errorMessage = 'Please enter a valid Ghana mobile number';
     }
     return formValidy;
   };
