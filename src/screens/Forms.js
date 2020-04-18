@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, BackHandler} from 'react-native';
 import Questions from '../common/Questions';
-import { SUBMIT_QUESTION_API_URL } from '../util/constants';
+import {SUBMIT_QUESTION_API_URL} from '../util/constants';
 
 export class Forms extends Component {
   state = {
@@ -11,24 +11,67 @@ export class Forms extends Component {
   };
 
   componentDidMount() {
-    const {
-      screenProps: {sections},
-    } = this.props;
-    this.setState({tempData: sections[0]});
+    // const sections = [...this.props.screenProps.sections];
+    // this.setState({tempData: sections[0]});
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
+
+    this.didFocusSubscription = this.props.navigation.addListener(
+      'didFocus',
+      () => {
+        const sections = [...this.props.screenProps.sections];
+        this.setState({tempData: sections[0]});
+      },
+    );
+
+    this.didBlurSubscription = this.props.navigation.addListener(
+      'didBlur',
+      () => {
+        // you can perform actions here when the screen `willBlur`
+        this.setState({
+          tempData: {},
+          counter: 0,
+          finalSet: [],
+        });
+      },
+    );
   }
 
-  handleFormChange = (dataSet) => {
+  componentWillUnmount() {
+    if (this.didBlurSubscription) {
+      this.didBlurSubscription.remove();
+    }
+
+    if (this.didFocusSubscription) {
+      this.didFocusSubscription.remove();
+    }
+
+    if (this.backHandler) {
+      return () => backHandler.remove();
+    }
+  }
+
+  moveBack = () => {
+    const {counter, finalSet, tempData} = this.state;
+    const screenProps = {...this.props.screenProps};
+    this.setState({
+      finalSet: finalSet.filter((section) => section.id != tempData.id - 1),
+      tempData: screenProps.sections[counter - 1],
+      counter: counter - 1,
+    });
+  };
+
+  moveNext = (dataSet) => {
     const {counter, finalSet} = this.state;
-    const {screenProps} = this.props;
+    const screenProps = {...this.props.screenProps};
 
     if (counter <= screenProps.sections.length - 1) {
       this.setState({
         finalSet: [...finalSet, dataSet],
         counter: counter + 1,
-        tempData: screenProps.sections[counter + 1],
+        tempData: [...screenProps.sections][counter + 1],
       });
-    } else {
-      console.log('No Next Page');
     }
   };
 
@@ -37,7 +80,7 @@ export class Forms extends Component {
     const {
       screenProps,
       navigation: {state, push},
-    } = this.props;
+    } = {...this.props};
 
     let data;
     let set = [];
@@ -46,7 +89,9 @@ export class Forms extends Component {
         <Questions
           dataSet={tempData}
           showSubmit={screenProps.sections.length - count}
-          handleFormChange={this.handleFormChange}
+          isPrevDisabled={count == 0}
+          moveNext={this.moveNext}
+          moveBack={this.moveBack}
         />
       );
     } else {

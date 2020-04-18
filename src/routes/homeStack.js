@@ -34,8 +34,9 @@ const HomeStack = createStackNavigator(
         backgroundColor: '#ffffff',
         height: 90,
       },
+      gestureEnabled: false,
       headerTintColor: '#ffffff',
-      headerTitle: (
+      headerTitle: () => (
         <View
           style={{
             flex: 1,
