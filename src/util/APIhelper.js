@@ -1,5 +1,6 @@
 import { Platform } from "react-native";
 import { APP_VERSION } from "./constants";
+import * as store from '../util/localStorage';
 
 const ApiHelperGET = (url, data = {}) => {
   return fetch(url, {
@@ -22,17 +23,23 @@ const ApiHelperGET = (url, data = {}) => {
 
 const ApiHelperPOST = async (url = "", data = {}) => {
   // Default options are marked with *
+  const headers = {
+    "Content-Type": "application/json",
+    "device": Platform.OS === 'android' ? 'ANDROID' : 'IPHONE',
+    "version": APP_VERSION
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+  };
+
+  const token = await store.getItem('VALIDATED_USERS');
+  if (token != null) {
+    headers['token'] = Object.values(JSON.parse(token))[0];
+  }
   const response = await fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
     credentials: "same-origin", // include, *same-origin, omit
-    headers: {
-      "Content-Type": "application/json",
-      "device": Platform.OS === 'android' ? 'ANDROID' : 'IPHONE',
-      "version": APP_VERSION
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
+    headers: headers,
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *client
     body: JSON.stringify(data), // body data type must match "Content-Type" header

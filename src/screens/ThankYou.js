@@ -85,12 +85,9 @@ export default function ThankYou(props) {
       }
     });
 
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      () => {
-        return true;
-      },
-    );
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
+      BackHandler.exitApp();
+    });
 
     return () => backHandler.remove();
   }, []);

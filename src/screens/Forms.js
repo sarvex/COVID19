@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, BackHandler} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Questions from '../common/Questions';
 import {SUBMIT_QUESTION_API_URL} from '../util/constants';
 
@@ -13,9 +13,6 @@ export class Forms extends Component {
   componentDidMount() {
     // const sections = [...this.props.screenProps.sections];
     // this.setState({tempData: sections[0]});
-    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      return true;
-    });
 
     this.didFocusSubscription = this.props.navigation.addListener(
       'didFocus',
@@ -45,10 +42,6 @@ export class Forms extends Component {
 
     if (this.didFocusSubscription) {
       this.didFocusSubscription.remove();
-    }
-
-    if (this.backHandler) {
-      return () => backHandler.remove();
     }
   }
 
